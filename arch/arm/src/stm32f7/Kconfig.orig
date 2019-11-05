@@ -2184,6 +2184,8 @@ config STM32F7_SPI_DMA
 	---help---
 		Use DMA to improve SPI transfer performance.  Cannot be used with STM32F7_SPI_INTERRUPT.
 
+<<<<<<< HEAD
+=======
 config STM32F7_SPI_DMATHRESHOLD
 	int "SPI DMA threshold"
 	default 4
@@ -2193,6 +2195,7 @@ config STM32F7_SPI_DMATHRESHOLD
 		by polling logic.  But we need a threshold value to determine what
 		is small.
 
+>>>>>>> 82c49e7512... WIP: stm32 and stm32f7 spi DMA threshold
 config STM32F7_SPI1_DMA
 	bool "SPI1 DMA"
 	default n
