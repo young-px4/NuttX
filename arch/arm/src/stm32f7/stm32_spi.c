@@ -1563,7 +1563,7 @@ static uint16_t spi_send(FAR struct spi_dev_s *dev, uint16_t wd)
  *
  ************************************************************************************/
 
-#if !defined(CONFIG_STM32F7_SPI_DMA) || defined(CONFIG_STM32F7_DMACAPABLE)
+#if !defined(CONFIG_STM32F7_SPI_DMA) || defined(CONFIG_STM32F7_DMACAPABLE) || defined(CONFIG_STM32F7_SPI_DMATHRESHOLD)
 #if !defined(CONFIG_STM32F7_SPI_DMA)
 static void spi_exchange(FAR struct spi_dev_s *dev, FAR const void *txbuffer,
                          FAR void *rxbuffer, size_t nwords)
@@ -1675,6 +1675,22 @@ static void spi_exchange(FAR struct spi_dev_s *dev, FAR const void *txbuffer,
   FAR struct stm32_spidev_s *priv = (FAR struct stm32_spidev_s *)dev;
 
   DEBUGASSERT(priv != NULL);
+
+#ifdef CONFIG_STM32F7_SPI_DMATHRESHOLD
+  /* Convert the number of word to a number of bytes */
+
+  size_t nbytes = (priv->nbits > 8) ? nwords << 1 : nwords;
+
+  /* If we cannot do DMA -OR- if this is a small SPI transfer, then let
+   * spi_exchange_nodma() do the work.
+   */
+
+  if (nbytes <= CONFIG_STM32F7_SPI_DMATHRESHOLD)
+    {
+      spi_exchange_nodma(dev, txbuffer, rxbuffer, nwords);
+      return;
+    }
+#endif
 
 #ifdef CONFIG_STM32F7_DMACAPABLE
   if ((priv->rxdma == NULL) || (priv->txdma == NULL) ||
