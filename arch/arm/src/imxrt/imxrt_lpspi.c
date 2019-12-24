@@ -32,7 +32,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- ************************************************************************************/
+ *************************************************************************************/
 
 /************************************************************************************
  * The external functions, imxrt_lpspi1/2/3/4select and imxrt_lpspi1/2/3/4status
@@ -55,7 +55,7 @@
  *      mmcsd_lpspislotinitialize(), for example, will bind the SPI driver to
  *      the SPI MMC/SD driver).
  *
- ****************************************************c*******************************/
+ ************************************************************************************/
 
 /************************************************************************************
  * Included Files
@@ -684,6 +684,7 @@ static inline void imxrt_lpspi_master_set_delay_scaler(FAR struct imxrt_lpspidev
  *   None
  *
  ************************************************************************************/
+
 static inline void imxrt_lpspi_master_set_delays(FAR struct imxrt_lpspidev_s *priv,
                                                  uint32_t delay_ns,
                                                  enum imxrt_delay_e type)
@@ -1126,7 +1127,6 @@ static void imxrt_lpspi_setbits(FAR struct spi_dev_s *dev, int nbits)
 
   if (nbits != priv->nbits)
     {
-
       if (nbits < 2 || nbits > 4096)
         {
           return;
@@ -1507,6 +1507,7 @@ static void imxrt_lpspi_bus_initialize(struct imxrt_lpspidev_s *priv)
                           LPSPI_CFGR1_MASTER);
 
   /* Set specific PCS to active high or low */
+
   /* TODO: Not needed for now */
 
   /* Set Configuration Register 1 related setting. */
