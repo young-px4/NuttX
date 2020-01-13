@@ -32,7 +32,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- *************************************************************************************/
+ ************************************************************************************/
 
 /************************************************************************************
  * The external functions, imxrt_lpspi1/2/3/4select and imxrt_lpspi1/2/3/4status
@@ -1158,7 +1158,7 @@ static void imxrt_lpspi_setbits(FAR struct spi_dev_s *dev, int nbits)
     }
 }
 
-/****************************************************************************
+/************************************************************************************
  * Name: imxrt_lpspi_hwfeatures
  *
  * Description:
@@ -1172,7 +1172,7 @@ static void imxrt_lpspi_setbits(FAR struct spi_dev_s *dev, int nbits)
  *   Zero (OK) if the selected H/W features are enabled; A negated errno
  *   value if any H/W feature is not supportable.
  *
- ****************************************************************************/
+ ************************************************************************************/
 
 #ifdef CONFIG_SPI_HWFEATURES
 static int imxrt_lpspi_hwfeatures(FAR struct spi_dev_s *dev,
@@ -1360,7 +1360,7 @@ static void imxrt_lpspi_exchange_nodma(FAR struct spi_dev_s *dev,
 }
 #endif /* !CONFIG_IMXRT_LPSPI_DMA || CONFIG_IMXRT_DMACAPABLE */
 
-/****************************************************************************
+/************************************************************************************
  * Name: imxrt_lpspi_sndblock
  *
  * Description:
